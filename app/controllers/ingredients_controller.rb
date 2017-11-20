@@ -12,9 +12,16 @@ class IngredientsController < ApplicationController
   end
 
   def create
+    @ingredient = Ingredient.new(ingredient_params)
+    if @ingredient.save
+      redirect_to @ingredient
+    else
+      render 'new'
+    end
   end
 
   def edit
+    @ingredient = Ingredient.find(params[:id])
   end
 
   private
